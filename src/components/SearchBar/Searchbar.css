@@ -1,0 +1,41 @@
+.searchbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+}
+
+.search-container {
+    background-color: #33556d;
+    width: 50%;
+    border-radius: 50px;
+    display: flex;
+    padding: .6em;
+}
+
+.search-container i {
+    font-size: 20px;
+    color: #0D324D;
+    cursor: pointer;
+}
+
+.searchInput {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+
+.searchInput::placeholder {
+    color: #aaa;
+    
+}
+
+.searchbar h1 {
+    color: #fff;
+}
+

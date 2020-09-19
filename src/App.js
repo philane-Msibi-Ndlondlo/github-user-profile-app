@@ -1,24 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+//COMPONENTS IMPORTS
+import Searchbar from './components/SearchBar/Searchbar';
+import Profile from './components/Profile/Profile';
+
+const githubURL = 'https://api.github.com/users';
+
+const App = () => {
+
+  const [ user, setUser ] = useState(null);
+
+  const [ repos, setRepos ] = useState([]);
+
+  const [ loading, setLoading ] = useState(false);
+
+  const [ error, setError ] = useState(null);
+  
+  const searchUser = (userTerm) => {
+
+    setLoading(true);
+
+    fetch(`${githubURL}/${userTerm}`)
+    .then(res => res.json())
+    .then(userData => {
+
+      setUser(userData);
+
+      fetch(userData.repos_url)
+      .then(res => res.json())
+      .then(reposData => {
+
+        setRepos(reposData);
+        setLoading(false);
+
+      })
+      .catch(err => { setError('Github user not found or something went wrong!'); console.log(err); setLoading(false);});
+
+    })
+    .catch(err => { setError('Github user\'s repos not found or something went wrong!'); console.log(err); setLoading(false);});
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Searchbar searchUser={searchUser}/>
+      <Profile user={user} repos={repos} loading={loading} error={error} />
     </div>
   );
 }
