@@ -1,5 +1,7 @@
 # Github-User-Profile-App
-[View the app here](https://philane-msibi-ndlondlo.github.io/github-user-profile-app/)
+[View the app here]
+
+(https://philane-msibi-ndlondlo.github.io/github-user-profile-app/)
 A web app used to search for a github user information to see his/her github account information and repos. Was developed using ReactJs and GitHub API.
 ___
 
